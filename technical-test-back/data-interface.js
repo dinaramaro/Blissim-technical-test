@@ -1,1 +1,1 @@
-db.defaults({ users: [] }).write();
+

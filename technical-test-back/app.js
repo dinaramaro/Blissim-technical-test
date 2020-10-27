@@ -1,17 +1,23 @@
 const express = require("express");
-const app = express();
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  // render the error page
-  res.status(err.status || 500);
-  res.json(err);
-});
+const adapter = new FileSync("db.json");
+const db = low(adapter);
 
-app.get("/", (req, res) => {
-  res.send("Hello serveur");
+//db.defaults({ users: [] }).write();
+
+const app = express().use(bodyParser.json()).use(cookieParser());
+
+//app.get("/", (req, res) => {
+//  res.send("Hello serveur!");
+//});
+
+app.get("/favorites", (req, res) => {
+  const data = db.get("favorites").value();
+  return res.json(data);
 });
 
 app.listen(8080, () => {

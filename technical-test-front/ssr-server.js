@@ -59,17 +59,17 @@ app
 
     server.delete('/api/favorites', handleFavorites);
 
-    server.listen(3000, (err) => {
-      if (err) throw err;
-      console.log('> Ready on http://localhost:3000');
-    });
-
     //Let Next.js handle the rest, as we assume these are frontend routes
     server.get('*', (req, res) => {
       return handle(req, res);
     });
 
-    //OR  server.get('*', handleNextRequest);
+    server.listen(3000, (err) => {
+      if (err) throw err;
+      console.log('> Ready on http://localhost:3000');
+    });
+
+    //OR  server.get('*', handle);
   })
   .catch((ex) => {
     console.error(ex.stack);

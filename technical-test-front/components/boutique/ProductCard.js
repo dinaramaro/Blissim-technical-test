@@ -7,34 +7,34 @@ import {
   Button,
   withStyles,
   IconButton,
-} from "@material-ui/core";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { useContext } from "react";
-import GlobalContext from "../../state/global-context";
+} from '@material-ui/core';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useContext } from 'react';
+import GlobalContext from '../../state/global-context';
 
 const useStyles = (theme) => ({
   root: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
   content: {
-    width: "100%",
+    width: '100%',
   },
   thumbnailContainer: {
     padding: theme.spacing(2),
-    textAlign: "cetner",
+    textAlign: 'cetner',
   },
   thumbnail: {
-    maxHeight: "170px",
-    width: "auto",
-    margin: "auto",
+    maxHeight: '170px',
+    width: 'auto',
+    margin: 'auto',
   },
   name: {
-    fontSize: "1rem",
+    fontSize: '1rem',
   },
 });
 
@@ -45,9 +45,11 @@ const ProductCard = (props) => {
   const handleAddToCart = (e, product) => {
     context.addProductToCart(
       product,
-      context.pushObject("open_interstitial", true)
+      context.pushObject('open_interstitial', true),
     );
   };
+
+  const handleAddToFavorites = () => {};
 
   return (
     <Card className={classes.root}>

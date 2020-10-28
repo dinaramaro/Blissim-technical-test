@@ -1,6 +1,5 @@
 import ProductCard from './ProductCard';
 import { Grid, withStyles } from '@material-ui/core';
-import ProductsList from '../../pages/boutique';
 
 const useStyles = (theme) => ({});
 

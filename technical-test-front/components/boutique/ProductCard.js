@@ -12,6 +12,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useContext } from 'react';
 import GlobalContext from '../../state/global-context';
+import { useState } from 'react';
 
 const useStyles = (theme) => ({
   root: {
@@ -39,8 +40,17 @@ const useStyles = (theme) => ({
 });
 
 const ProductCard = (props) => {
-  const { classes, product } = props;
+  const { classes, product, handleFavorites, favoritesList } = props;
+  console.log('favoritesList', favoritesList);
   const context = useContext(GlobalContext);
+
+  let isFavorite = false;
+  for (let i = 0; i < favoritesList.length; i++) {
+    if (favoritesList[i].id === product.id) {
+      isFavorite = true;
+      break;
+    }
+  }
 
   const handleAddToCart = (e, product) => {
     context.addProductToCart(
@@ -49,7 +59,10 @@ const ProductCard = (props) => {
     );
   };
 
-  const handleAddToFavorites = () => {};
+  const toggleFavorites = (e, product) => {
+    console.log('toggleFavorite', product);
+    handleFavorites(product);
+  };
 
   return (
     <Card className={classes.root}>
@@ -77,8 +90,8 @@ const ProductCard = (props) => {
         <IconButton onClick={(e) => handleAddToCart(e, product)}>
           <ShoppingBasketIcon color="secondary" />
         </IconButton>
-        <IconButton onClick={(e) => handleAddToCart(e, product)}>
-          <FavoriteIcon color="error" />
+        <IconButton onClick={(e) => toggleFavorites(e, product)}>
+          <FavoriteIcon color={isFavorite ? 'error' : 'secondary'} />
         </IconButton>
       </CardActions>
     </Card>

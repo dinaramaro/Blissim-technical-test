@@ -8,8 +8,10 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
+import ProductCategories from '../../components/boutique/ProductCategories';
 import ProductsList from '../../components/boutique/ProductsList';
 import Head from 'next/head';
+import { inspect } from 'util';
 
 const useStyles = (theme) => ({
   root: { marginBottom: theme.spacing(3) },
@@ -215,7 +217,7 @@ const productsDatas = [
 ];
 
 const Boutique = (props) => {
-  const { classes } = props;
+  const { classes, favoritesData } = props;
   return (
     <DefaultLayout>
       <Head>
@@ -232,30 +234,29 @@ const Boutique = (props) => {
 
         <Grid container>
           <Grid item xs={12} md={3}>
-            <Typography variant="h6" className={classes.filterTitle}>
-              Catégories
-            </Typography>
-            <div className={classes.filterListContainer}>
-              <List>
-                <ListItem className={classes.filterListItem}>
-                  <ListItemText primary="Maquillage" />
-                </ListItem>
-                <ListItem className={classes.filterListItem}>
-                  <ListItemText primary="Soins visage" />
-                </ListItem>
-                <ListItem className={classes.filterListItem}>
-                  <ListItemText primary="Parfums" />
-                </ListItem>
-              </List>
-            </div>
+            <ProductCategories
+              products={productsDatas}
+              favorites={favoritesData}
+            />
           </Grid>
 
           <Grid item xs={12} md={9} className={classes.productsListContainer}>
-            <ProductsList products={productsDatas} />
+            <ProductsList products={productsDatas} favorites={favoritesData} />
           </Grid>
         </Grid>
       </Container>
     </DefaultLayout>
   );
 };
+
+// This gets called on every request
+export const getServerSideProps = async function () {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3000/api/favorites`);
+  const favoritesData = await res.json();
+
+  // Pass data to the page via props
+  return { props: { favoritesData } };
+};
+
 export default withStyles(useStyles)(Boutique);

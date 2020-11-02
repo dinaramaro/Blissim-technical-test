@@ -4,7 +4,6 @@ import {
   CardActions,
   CardMedia,
   Typography,
-  Button,
   withStyles,
   IconButton,
 } from '@material-ui/core';
@@ -12,7 +11,6 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useContext } from 'react';
 import GlobalContext from '../../state/global-context';
-import { useState } from 'react';
 
 const useStyles = (theme) => ({
   root: {
@@ -26,22 +24,41 @@ const useStyles = (theme) => ({
     width: '100%',
   },
   thumbnailContainer: {
-    padding: theme.spacing(2),
-    textAlign: 'cetner',
+    padding: theme.spacing(1),
+    textAlign: 'center',
   },
   thumbnail: {
-    maxHeight: '170px',
     width: 'auto',
     margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      maxHeight: '90px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxHeight: '250px',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '200px',
+    },
   },
   name: {
-    fontSize: '1rem',
+    letterSpacing: 1,
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  price: {
+    letterSpacing: 2,
+    fontSize: 12,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  cardActions: {
+    width: '100%',
+    justifyContent: 'center',
   },
 });
 
 const ProductCard = (props) => {
   const { classes, product, handleFavorites, favoritesList } = props;
-  console.log('favoritesList', favoritesList);
   const context = useContext(GlobalContext);
 
   let isFavorite = false;
@@ -65,7 +82,7 @@ const ProductCard = (props) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card elevation={0} className={classes.root}>
       <CardContent className={classes.content}>
         <div className={classes.thumbnailContainer}>
           <CardMedia
@@ -79,18 +96,34 @@ const ProductCard = (props) => {
         <Typography gutterBottom component="h2" className={classes.name}>
           {product.title}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          className={classes.price}
+        >
           {product.desc}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {product.price}
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          className={classes.price}
+        >
+          {product.price} €
         </Typography>
       </CardContent>
-      <CardActions>
-        <IconButton onClick={(e) => handleAddToCart(e, product)}>
+      <CardActions disableSpacing className={classes.cardActions}>
+        <IconButton
+          onClick={(e) => handleAddToCart(e, product)}
+          style={{ backgroundColor: 'transparent' }}
+        >
           <ShoppingBasketIcon color="secondary" />
         </IconButton>
-        <IconButton onClick={(e) => toggleFavorites(e, product)}>
+        <IconButton
+          onClick={(e) => toggleFavorites(e, product)}
+          style={{ backgroundColor: 'transparent' }}
+        >
           <FavoriteIcon color={isFavorite ? 'error' : 'secondary'} />
         </IconButton>
       </CardActions>

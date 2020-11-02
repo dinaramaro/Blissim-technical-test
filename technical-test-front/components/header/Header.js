@@ -17,7 +17,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import TopBarBanner from '../TopBarBanner';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Link from 'next/link';
 import Interstitial from '../Interstitial';
 import { useContext, useState } from 'react';
@@ -30,6 +30,7 @@ const useStyles = (theme) =>
   ({
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
+      backgroundColor: theme.palette.primary.main,
     },
     toolbarset: theme.mixins.toolbar,
     toolbar: {
@@ -58,22 +59,19 @@ const useStyles = (theme) =>
       overflow: 'hidden',
     },
     cartIcon: {
-      color: theme.palette.light,
+      color: theme.palette.primary.light,
     },
     list: {
       width: '100%',
       maxWidth: 240,
     },
     filterTitle: {
-      backgroundColor: theme.palette.primary,
       color: theme.palette.info.main,
-      letterSpacing: 6,
-      fontWeight: 'bold',
+      letterSpacing: -3,
       paddingLeft: 20,
+      fontSize: 22,
     },
     filterCategory: {
-      letterSpacing: 6,
-      fontWeight: 'bold',
       paddingLeft: 20,
       paddingTop: 60,
     },
@@ -82,13 +80,14 @@ const useStyles = (theme) =>
       letterSpacing: 2,
       paddingLeft: 30,
     },
+    nestedTitle: {
+      fontSize: 16,
+      letterSpacing: 2,
+      paddingLeft: 30,
+    },
     nested: {
       paddingLeft: theme.spacing(5),
       fontSize: 14,
-    },
-    pointerEvents: {
-      pointerEvents: 'none',
-      backgroundColor: 'transparent',
     },
   });
 
@@ -138,8 +137,8 @@ const Header = (props) => {
               style={{ backgroundColor: 'transparent' }}
             >
               <ListItemText
-                primary="Manteaux"
-                classes={{ primary: classes.filterListItem }}
+                primary="Maroquinerie"
+                classes={{ primary: classes.nestedTitle }}
               />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -148,13 +147,13 @@ const Header = (props) => {
                 <Typography component="h3" variant="h3" color="textPrimary">
                   <ListItem>
                     <ListItemText
-                      primary="Vestes"
+                      primary="Ceintures"
                       classes={{ primary: classes.nested }}
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="Trench"
+                      primary="Sacs"
                       classes={{ primary: classes.nested }}
                     />
                   </ListItem>
@@ -163,13 +162,13 @@ const Header = (props) => {
             </Collapse>
             <ListItem>
               <ListItemText
-                primary="Maroquinerie"
+                primary="Bijoux"
                 classes={{ primary: classes.filterListItem }}
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                primary="Collection Homme"
+                primary="Accessoires"
                 classes={{ primary: classes.filterListItem }}
               />
             </ListItem>
@@ -186,7 +185,7 @@ const Header = (props) => {
     <>
       <header>
         <AppBar position="fixed" elevation={0} className={classes.appBar}>
-          <TopBarBanner>test</TopBarBanner>
+          <TopBarBanner className={classes.appBar}>test</TopBarBanner>
           <Container maxWidth="lg">
             <Toolbar className={classes.toolbar}>
               <IconButton
@@ -206,7 +205,7 @@ const Header = (props) => {
                 </a>
               </Link>
               <IconButton onClick={toggleDrawer(!context.open_interstitial)}>
-                <ShoppingBasketIcon className={classes.cartIcon} />
+                <ShoppingCartIcon className={classes.cartIcon} />
               </IconButton>
             </Toolbar>
           </Container>

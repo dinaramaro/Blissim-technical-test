@@ -8,13 +8,17 @@ import { productsDatas } from '../../products';
 import Head from 'next/head';
 
 const useStyles = (theme) => ({
-  root: { marginBottom: theme.spacing(3), backgroundColor: '#ffffff' },
+  root: { backgroundColor: '#ffffff' },
   toolbar: theme.mixins.toolbar,
   h1: {
     margin: theme.spacing(4, 0),
     textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 38,
+    letterSpacing: 8,
+  },
+  image: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   filterTitle: {
     backgroundColor: theme.palette.primary,
@@ -45,9 +49,9 @@ const Boutique = (props) => {
         <Container container className={classes.titleContainer}>
           <Grid item>
             <div className={classes.toolbar} />
-            <Typography variant="h1" className={classes.h1}>
-              SuperShop in index.js
-            </Typography>
+            <Grid item xs={12} md={12} className={classes.image}>
+              <img src={'/logoSuperShop.png'} alt="supershop_logo" />
+            </Grid>
           </Grid>
         </Container>
 

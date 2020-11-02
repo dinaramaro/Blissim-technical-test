@@ -3,29 +3,31 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#283149',
-      light: '#dc004e',
+      main: '#900C3E', //rose
+      light: '#ffffff',
     },
     secondary: {
-      main: '#404b69',
-      light: '#d32f2f',
+      main: '#212121', //gris foncé
+      light: '#666666', // gris clair
     },
     error: {
       main: '#ffca28',
-      light: '#115293',
     },
     info: {
-      main: '#e57373',
-      light: '#dc004e',
+      main: '#000000', //noir
+      light: '#17202a', //bleu foncé
     },
     accent: '#00818a',
     light: '#dbedf3',
   },
   typography: {
     h1: {
-      fontSize: 18,
+      fontSize: 20,
       paddingTop: 5,
       paddingBottom: 5,
+      textTransform: 'uppercase',
+      letterSpacing: 6,
+      fontWeight: 'bolder',
     },
     h2: {
       fontSize: 16,

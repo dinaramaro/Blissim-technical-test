@@ -7,7 +7,7 @@ import {
   withStyles,
   IconButton,
 } from '@material-ui/core';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useContext } from 'react';
 import GlobalContext from '../../state/global-context';
@@ -19,9 +19,11 @@ const useStyles = (theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    padding: 15,
   },
-  content: {
+  cardContent: {
     width: '100%',
+    padding: 0,
   },
   thumbnailContainer: {
     padding: theme.spacing(1),
@@ -44,16 +46,20 @@ const useStyles = (theme) => ({
     letterSpacing: 1,
     fontSize: 12,
     textAlign: 'center',
+    paddingRight: 30,
+    paddingLeft: 30,
   },
   price: {
     letterSpacing: 2,
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 13,
+    fontWeight: '900',
     textAlign: 'center',
+    color: theme.palette.secondary.main,
   },
   cardActions: {
     width: '100%',
     justifyContent: 'center',
+    padding: 0,
   },
 });
 
@@ -83,7 +89,7 @@ const ProductCard = (props) => {
 
   return (
     <Card elevation={0} className={classes.root}>
-      <CardContent className={classes.content}>
+      <CardContent className={classes.cardContent}>
         <div className={classes.thumbnailContainer}>
           <CardMedia
             component="img"
@@ -96,12 +102,7 @@ const ProductCard = (props) => {
         <Typography gutterBottom component="h2" className={classes.name}>
           {product.title}
         </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={classes.price}
-        >
+        <Typography variant="body2" component="p" className={classes.price}>
           {product.desc}
         </Typography>
         <Typography
@@ -118,7 +119,7 @@ const ProductCard = (props) => {
           onClick={(e) => handleAddToCart(e, product)}
           style={{ backgroundColor: 'transparent' }}
         >
-          <ShoppingBasketIcon color="secondary" />
+          <AddShoppingCartIcon color="secondary" />
         </IconButton>
         <IconButton
           onClick={(e) => toggleFavorites(e, product)}

@@ -16,24 +16,26 @@ import Drawer from '@material-ui/core/Drawer';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import TopBarBanner from '../TopBarBanner';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Link from 'next/link';
 import Interstitial from '../Interstitial';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import GlobalContext from '../../state/global-context';
 
 const drawerWidth = 240;
 
-const useStyles = (theme) => (
-  theme.direction === 'rtl' ? { anchor: 'right' } : { anchor: 'left' },
-  {
+const useStyles = (theme) =>
+  //theme.direction === 'rtl' ? { anchor: 'right' } : { anchor: 'left' },
+  ({
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    toolbarset: theme.mixins.toolbar,
     toolbar: {
       padding: 0,
       display: 'flex',
       justifyContent: 'space-between',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -88,32 +90,14 @@ const useStyles = (theme) => (
       pointerEvents: 'none',
       backgroundColor: 'transparent',
     },
-  }
-);
+  });
 
 const Header = (props) => {
   const { classes, window } = props;
   const context = useContext(GlobalContext);
 
-  /*useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.onscroll = () => {
-        let currentScrollPos = window.pageYOffset;
-        let maxScroll = document.body.scrollHeight - window.innerHeight;
-        // console.log(maxScroll)
-        if (currentScrollPos > 0 && currentScrollPos < maxScroll) {
-          setOpacity(0);
-          // console.log(currentScrollPos)
-        } else {
-          setOpacity(1);
-        }
-      };
-    }
-  }, []);*/
-
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [opacity, setOpacity] = useState(1);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -202,6 +186,7 @@ const Header = (props) => {
     <>
       <header>
         <AppBar position="fixed" elevation={0} className={classes.appBar}>
+          <TopBarBanner>test</TopBarBanner>
           <Container maxWidth="lg">
             <Toolbar className={classes.toolbar}>
               <IconButton
@@ -259,6 +244,7 @@ const Header = (props) => {
             </Drawer>
           </Hidden>
         </nav>
+        <div className={classes.toolbarset} />
       </header>
       <Interstitial />
     </>

@@ -1,13 +1,7 @@
 import DefaultLayout from '../../components/DefaultLayout';
 import Header from '../../components/header/Header';
 import Footer from '../../components/Footer/Footer';
-import {
-  withStyles,
-  Container,
-  Grid,
-  Typography,
-  Toolbar,
-} from '@material-ui/core';
+import { withStyles, Container, Grid, Typography } from '@material-ui/core';
 //import ProductCategories from '../../components/boutique/ProductCategories';
 import ProductsList from '../../components/boutique/ProductsList';
 import { productsDatas } from '../../products';
@@ -32,6 +26,9 @@ const useStyles = (theme) => ({
   productsListContainer: {
     justifyContent: 'flex-end',
   },
+  divider: {
+    margin: theme.spacing(2, 0),
+  },
 });
 
 const Boutique = (props) => {
@@ -49,7 +46,7 @@ const Boutique = (props) => {
           <Grid item>
             <div className={classes.toolbar} />
             <Typography variant="h1" className={classes.h1}>
-              SuperShop
+              SuperShop in index.js
             </Typography>
           </Grid>
         </Container>

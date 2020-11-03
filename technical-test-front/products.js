@@ -129,7 +129,7 @@ export const productsDatas = [
   },
   {
     id: 15,
-    title: "BIYLACLESEN Women's 3-in-1",
+    title: "BIYLA Women's 3-in-1",
     price: 56.99,
     description:
       'Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather.',
@@ -138,7 +138,7 @@ export const productsDatas = [
   },
   {
     id: 16,
-    title: "Lock and Love Women's Removable Hooded",
+    title: "Lock and Love Women's Hooded",
     price: 29.95,
     description:
       '100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON',
@@ -147,7 +147,7 @@ export const productsDatas = [
   },
   {
     id: 17,
-    title: 'Rain Jacket Women Windbreaker',
+    title: 'Rain Jacket Women',
     price: 39.99,
     description:
       "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",

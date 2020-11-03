@@ -43,6 +43,11 @@ const useStyles = (theme) => ({
     },
   },
   name: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 9,
+      paddingLeft: 5,
+      paddingRight: 5,
+    },
     letterSpacing: 1,
     fontSize: 12,
     textAlign: 'center',
@@ -50,6 +55,9 @@ const useStyles = (theme) => ({
     paddingLeft: 30,
   },
   price: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
     letterSpacing: 2,
     fontSize: 13,
     fontWeight: '900',

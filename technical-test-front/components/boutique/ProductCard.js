@@ -96,7 +96,7 @@ const ProductCard = (props) => {
             alt={product.title}
             image={product.image}
             className={classes.thumbnail}
-            title="Contemplative Reptile"
+            title={product.title}
           />
         </div>
         <Typography gutterBottom component="h2" className={classes.name}>

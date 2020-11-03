@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core';
 import { CssBaseline } from '@material-ui/core';
 import theme from '../theme/theme';
 
-// ===== Basic Layout ===== //
 const useStyles = (theme) => ({
   root: {
     minHeight: '100vh',

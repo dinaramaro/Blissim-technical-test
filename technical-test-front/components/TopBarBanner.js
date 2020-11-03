@@ -1,12 +1,4 @@
-import {
-  withStyles,
-  Grid,
-  Container,
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-} from '@material-ui/core';
+import { withStyles, Toolbar, Typography } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { debounce } from '../utilities/helpers';
 
@@ -23,8 +15,12 @@ const useStyles = (theme) => ({
     fontWeight: 'bold',
     color: theme.palette.primary.light,
     letterSpacing: -2,
-    fontSize: 20,
+    fontSize: 18,
     margin: 'auto',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
 });
 
@@ -35,15 +31,13 @@ const TopBarBanner = (props) => {
   const [visible, setVisible] = useState(true);
 
   const handleScroll = debounce(() => {
-    // find current scroll position
     const currentScrollPos = window.pageYOffset;
-    // set state based on location info (explained in more detail below)
+
     setVisible(
       (prevScrollPos > currentScrollPos &&
         prevScrollPos - currentScrollPos > 70) ||
         currentScrollPos < 10,
     );
-    // set state to new scroll position
     setPrevScrollPos(currentScrollPos);
   }, 100);
 
@@ -60,7 +54,7 @@ const TopBarBanner = (props) => {
       style={{ top: visible ? '0' : '-60px' }}
     >
       <Typography variant="h2" className={classes.h2}>
-        PROFITEZ DE -50% SUR TOUT LE SITE AVEC LE CODE PROMO "SUPERSHOP10"
+        PROFITEZ DE -50% SUR TOUT LE SITE AVEC LE CODE PROMO "SUPERSHOP50"
       </Typography>
     </Toolbar>
   );

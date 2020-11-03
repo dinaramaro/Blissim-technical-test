@@ -25,71 +25,64 @@ import GlobalContext from '../../state/global-context';
 
 const drawerWidth = 240;
 
-const useStyles = (theme) =>
-  //theme.direction === 'rtl' ? { anchor: 'right' } : { anchor: 'left' },
-  ({
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      backgroundColor: theme.palette.primary.main,
+const useStyles = (theme) => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: theme.palette.primary.main,
+  },
+  toolbarset: theme.mixins.toolbar,
+  toolbar: {
+    padding: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
-    toolbarset: theme.mixins.toolbar,
-    toolbar: {
-      padding: 0,
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
-    },
-    drawer: {
-      [theme.breakpoints.up('md')]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-    },
-    drawerContainer: {
-      overflow: 'auto',
-      paddingTop: 110,
-    },
-    drawerPaper: {
+  },
+  drawer: {
+    [theme.breakpoints.up('md')]: {
       width: drawerWidth,
-      overflow: 'hidden',
+      flexShrink: 0,
     },
-    cartIcon: {
-      color: theme.palette.primary.light,
-    },
-    list: {
-      width: '100%',
-      maxWidth: 240,
-    },
-    filterTitle: {
-      color: theme.palette.info.main,
-      letterSpacing: -3,
-      paddingLeft: 20,
-      fontSize: 22,
-    },
-    filterCategory: {
-      paddingLeft: 20,
-      paddingTop: 60,
-    },
-    filterListItem: {
-      fontSize: 16,
-      letterSpacing: 2,
-      paddingLeft: 30,
-    },
-    nestedTitle: {
-      fontSize: 16,
-      letterSpacing: 2,
-      paddingLeft: 30,
-    },
-    nested: {
-      paddingLeft: theme.spacing(5),
-      fontSize: 14,
-    },
-  });
+  },
+  drawerContainer: {
+    overflow: 'auto',
+    paddingTop: 110,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    overflow: 'hidden',
+  },
+  cartIcon: {
+    color: theme.palette.primary.light,
+  },
+  list: {
+    width: '100%',
+    maxWidth: 240,
+  },
+  title: {
+    color: theme.palette.info.main,
+    letterSpacing: -3,
+    paddingLeft: 20,
+    fontSize: 22,
+  },
+  menuTitle: {
+    paddingLeft: 20,
+    paddingTop: 60,
+  },
+  categories: {
+    fontSize: 16,
+    letterSpacing: 2,
+    paddingLeft: 30,
+  },
+  nested: {
+    paddingLeft: theme.spacing(5),
+    fontSize: 14,
+  },
+});
 
 const Header = (props) => {
   const { classes, window } = props;
@@ -120,16 +113,16 @@ const Header = (props) => {
   const drawer = (
     <Grid container spacing={2} className={classes.drawerContainer}>
       <Grid item xs={12} md={12}>
-        <Typography variant="h1" className={classes.filterTitle}>
-          PROMOTIONS
+        <Typography variant="h1" className={classes.title}>
+          Promotions
         </Typography>
-        <Typography variant="h1" className={classes.filterTitle}>
-          NOS BEST SELLERS
+        <Typography variant="h1" className={classes.title}>
+          Nos best sellers
         </Typography>
-        <Typography variant="h1" className={classes.filterCategory}>
+        <Typography variant="h1" className={classes.menuTitle}>
           Catégories
         </Typography>
-        <div className={classes.filterListContainer}>
+        <div>
           <List className={classes.list}>
             <ListItem
               button
@@ -138,7 +131,7 @@ const Header = (props) => {
             >
               <ListItemText
                 primary="Maroquinerie"
-                classes={{ primary: classes.nestedTitle }}
+                classes={{ primary: classes.categories }}
               />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -163,13 +156,13 @@ const Header = (props) => {
             <ListItem>
               <ListItemText
                 primary="Bijoux"
-                classes={{ primary: classes.filterListItem }}
+                classes={{ primary: classes.categories }}
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 primary="Accessoires"
-                classes={{ primary: classes.filterListItem }}
+                classes={{ primary: classes.categories }}
               />
             </ListItem>
           </List>
@@ -178,14 +171,14 @@ const Header = (props) => {
     </Grid>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  //const container =
+  //  window !== undefined ? () => window().document.body : undefined;
 
   return (
     <>
       <header>
         <AppBar position="fixed" elevation={0} className={classes.appBar}>
-          <TopBarBanner className={classes.appBar}>test</TopBarBanner>
+          <TopBarBanner className={classes.appBar} />
           <Container maxWidth="lg">
             <Toolbar className={classes.toolbar}>
               <IconButton
@@ -199,9 +192,7 @@ const Header = (props) => {
               </IconButton>
               <Link href="/" passHref>
                 <a>
-                  <Typography variant="h1" className={classes.title}>
-                    SuperShop
-                  </Typography>
+                  <Typography variant="h1">SuperShop</Typography>
                 </a>
               </Link>
               <IconButton onClick={toggleDrawer(!context.open_interstitial)}>
@@ -211,10 +202,9 @@ const Header = (props) => {
           </Container>
         </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden lgUp implementation="css">
             <Drawer
-              container={container}
+              //             container={container}
               variant="temporary"
               anchor={classes.anchor}
               open={mobileOpen}
@@ -223,7 +213,7 @@ const Header = (props) => {
                 paper: classes.drawerPaper,
               }}
               ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true,
               }}
             >
               {drawer}
@@ -231,7 +221,7 @@ const Header = (props) => {
           </Hidden>
           <Hidden smDown implementation="css">
             <Drawer
-              container={container}
+              //              container={container}
               variant="permanent"
               classes={{
                 paper: classes.drawerPaper,

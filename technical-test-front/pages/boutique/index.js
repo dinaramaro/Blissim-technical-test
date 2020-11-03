@@ -2,7 +2,6 @@ import DefaultLayout from '../../components/DefaultLayout';
 import Header from '../../components/header/Header';
 import Footer from '../../components/Footer/Footer';
 import { withStyles, Container, Grid, Typography } from '@material-ui/core';
-//import ProductCategories from '../../components/boutique/ProductCategories';
 import ProductsList from '../../components/boutique/ProductsList';
 import { productsDatas } from '../../products';
 import Head from 'next/head';
@@ -10,12 +9,6 @@ import Head from 'next/head';
 const useStyles = (theme) => ({
   root: { backgroundColor: '#ffffff' },
   toolbar: theme.mixins.toolbar,
-  h1: {
-    margin: theme.spacing(4, 0),
-    textAlign: 'center',
-    fontSize: 38,
-    letterSpacing: 8,
-  },
   image: {
     display: 'flex',
     justifyContent: 'center',
@@ -29,9 +22,6 @@ const useStyles = (theme) => ({
   },
   productsListContainer: {
     justifyContent: 'flex-end',
-  },
-  divider: {
-    margin: theme.spacing(2, 0),
   },
 });
 

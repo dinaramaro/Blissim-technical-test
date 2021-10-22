@@ -1,27 +1,20 @@
 ## Getting Started
 
-install the project:
-```bash
-git clone git@github.com:gaetanBoyron/test-front.git
-cd test-front/
+Install the project:
+git clone https://github.com/dinaramaro/blissim-technical-test.git
+cd technical-test-front/
 
+Install the dependencies
 npm install
-# or
-yarn dev
+
 ```
 
-
-First, run the development server:
-
-```bash
+Run the development server:
 npm run dev
-# or
-yarn dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
 ## Learn More
 
